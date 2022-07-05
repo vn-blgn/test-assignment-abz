@@ -1,0 +1,60 @@
+<div class='container-fluid'>
+
+    <div class='row'>
+
+        <div class='col-sm-3'>
+            
+            {{>sidebar}}
+
+        </div>
+
+        <div class='col-sm-6'>
+
+          <h1>{{title}}</h1>
+
+          <form action="" method="POST" enctype="multipart/form-data">
+
+                <div class="form-group vertical-space">
+                    <label for="name">Name:</label>
+                    <input class="form-control" id="name" type="text" placeholder="Name" name="name" required='true'><br>
+                </div>
+
+                <div class="form-group vertical-space">
+                    <label for="email">Email:</label>
+                    <input class="form-control" id="email" type="text" placeholder="Email" name="email" required='true'><br>
+                </div>
+
+                <div class="form-group vertical-space">
+                    <label for="phone">Phone:</label>
+                    <input class="form-control" id="phone" type="text" placeholder="Phone" name="phone" required='true'><br>
+                </div>
+
+                <div class="form-group vertical-space">
+                    <label for="position">Position:</label>
+                    <select class="form-control" id="position" type="select" placeholder="Select position" name="position" required='true'>
+                        {{#each users}}
+                                <option value={{this.positionId}}>{{this.position}}</option>
+                        {{/each}}
+                    </select><br>
+                </div>
+
+                <div class="form-group vertical-space">
+                    <label for="photo">Photo:</label>
+                    <input class="form-control-file" id="photo" type="file" name="photo" required='true'><br>
+                </div>
+
+                <button class="btn btn-info btn-sm" type="submit">Submit</button>
+
+            </form>
+
+        </div>
+
+        <div class='col-sm-3'>
+
+            {{>options}}
+
+        </div>
+
+    </div>
+
+</div>

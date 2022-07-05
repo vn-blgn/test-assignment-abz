@@ -1,0 +1,37 @@
+<div class='container-fluid'>
+
+    <div class='row'>
+
+        <div class='col-sm-3'>
+            
+            {{>sidebar}}
+
+        </div>
+
+        <div class='col-sm-6'>
+
+          <h1>{{title}}</h1>
+
+          <ul class="users">
+              {{#each users}}
+              <li><a href={{userUrl}}>{{this.name}}</a></li>
+              {{else}}
+              <li>There are no users.</li>
+              {{/each}}
+          </ul>
+
+          <button id="more" type="button" name={{clientId}} class="btn btn-primary btn-sm">more</button>
+          
+        </div>
+
+        <div class='col-sm-3'>
+            
+            {{>options}}
+
+        </div>
+
+    </div>
+
+</div>
+
+{{> script}}

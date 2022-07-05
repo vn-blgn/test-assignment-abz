@@ -1,0 +1,33 @@
+<div class='container-fluid'>
+
+    <div class='row'>
+
+        <div class='col-sm-3'>
+            
+            {{>sidebar}}
+
+        </div>
+
+        <div class='col-sm-6'>
+
+          <h1>{{title}}</h1>
+
+          <ul>
+              {{#each positions}}
+              <li><a href={{positionUrl}}>{{this.position}}</a></li>
+              {{else}}
+              <li>There are no positions.</li>
+              {{/each}}
+          </ul>
+          
+        </div>
+
+        <div class='col-sm-3'>
+
+            {{>options}}
+
+        </div>
+
+    </div>
+
+</div>

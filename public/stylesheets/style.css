@@ -1,0 +1,46 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding: 0;
+}
+
+.vertical-space {
+    margin: 10px;
+}
+
+.form-control {
+    height: 28px;
+}
+
+.sidebar-nav {
+    margin-top: 50px;
+    padding: 0;
+    list-style: none;
+}
+
+.count {
+    color: #d5d5d5;
+}
+
+.danger {
+    color: #FF0000;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.ln-hght {
+    line-height: 150%;
+}

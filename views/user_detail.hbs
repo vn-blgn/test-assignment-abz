@@ -1,0 +1,33 @@
+<div class='container-fluid'>
+
+    <div class='row'>
+
+        <div class='col-sm-3'>
+            
+            {{>sidebar}}
+
+        </div>
+
+        <div class='col-sm-6'>
+
+          <h1>{{title}}</h1>
+
+          <div><img src={{photo}} alt='user'></div><br>
+          
+          <ul class="ln-hght">
+              <li>Position: <a href={{positionUrl}}>{{position}}</a></li>
+              <li>Phone: {{phone}}</li>
+              <li>Email: {{email}}</li>
+          </ul>
+
+        </div>
+
+        <div class='col-sm-3'>
+
+            {{>options}}
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,29 @@
+<div class='container-fluid'>
+
+    <div class='row'>
+
+        <div class='col-sm-3'>
+            
+            {{>sidebar}}
+
+        </div>
+
+        <div class='col-sm-6'>
+
+          <h1>{{title}}</h1>
+
+          <p>Upload users</p>
+
+          <a href="/api/{{clientId}}/upload" class="btn btn-primary btn-sm">upload</a>
+
+        </div>
+
+        <div class='col-sm-3'>
+
+            {{>api_options}}
+            
+        </div>
+
+    </div>
+
+</div>
