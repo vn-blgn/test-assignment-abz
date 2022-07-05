@@ -167,8 +167,7 @@ exports.uploadUsers = async(req, res) => {
         const [countData, countMeta] = await pool.query(selCount);
         const count = countData[0]['COUNT(*)'];
 
-        // const uploadData = `LOAD DATA INFILE '${id}_test.csv' 
-        const uploadData = `LOAD DATA INFILE '../public/files/${id}_test.csv' 
+        const uploadData = `LOAD DATA INFILE './public/files/${id}_test.csv' 
         INTO TABLE ${id}_users FIELDS TERMINATED BY ',' ENCLOSED BY '\"' 
         LINES TERMINATED BY '\r\n' IGNORE 1 ROWS`;
 
