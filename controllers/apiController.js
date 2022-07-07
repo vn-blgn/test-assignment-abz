@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const poolCon = require("../lib/createConnect");
-const converter = require('../lib/converter');
+const dbloader = require('../lib/dbloader');
 
 exports.login_get = async(req, res) => {
     try {
@@ -30,8 +30,6 @@ exports.login_post = async(req, res) => {
                 const token = jwt.sign({
                     email: candidate[0].email,
                     id: candidate[0].authId
-                // }, process.env.PRIVATEKEY, { expiresIn: "1h" });
-                // }, process.env.PRIVATEKEY, { expiresIn: "1m" });
                 }, process.env.PRIVATEKEY, { expiresIn: "24h" });
 
                 res.cookie('token', token, { path: '/api', httpOnly: true});
@@ -40,7 +38,7 @@ exports.login_post = async(req, res) => {
                 res.render('api', {
                     title: 'Log in',
                     message: 'Invalid password!',
-                    action: 'Log in or <a href="/registration">register</a>'
+                    action: 'Log in or <a href="/api/registration">register</a>'
                 });
             };
 
@@ -48,7 +46,7 @@ exports.login_post = async(req, res) => {
             res.render('api', {
                 title: 'Log in',
                 message: 'User not found!',
-                action: 'Log in or <a href="/registration">register</a>'
+                action: 'Log in or <a href="/api/registration">register</a>'
             });
         };
     } catch (error) {
@@ -158,7 +156,7 @@ exports.uploadUsers = async(req, res) => {
     try {
         const id = req.params.id;
 
-        const users = converter.users_csv(id);
+        const users = dbloader.users(45);
 
         const pool = poolCon.createConnect();
 
@@ -167,12 +165,15 @@ exports.uploadUsers = async(req, res) => {
         const [countData, countMeta] = await pool.query(selCount);
         const count = countData[0]['COUNT(*)'];
 
-        const uploadData = `LOAD DATA LOCAL INFILE './${id}_test.csv' 
-        INTO TABLE ${id}_users FIELDS TERMINATED BY ',' ENCLOSED BY '\"' 
-        LINES TERMINATED BY '\r\n' IGNORE 1 ROWS`;
+        const values = users.map(user => `(
+            ${user.Id}, '${user.name}', '${user.email}', '${user.phone}', ${user.positionId}, '${user.photo}'
+            )`);
+
+        const uploadData = `insert ${id}_users(userId, name, email, phone, positionId, photo) 
+        VALUES ${values.join(', ')};`
 
         if (count == 0) {
-            const [data, meta] = await pool.query(uploadData);
+            const [insUploadData, insUploadMeta] = await pool.execute(uploadData);
         };
 
         res.redirect(`/api/${id}/users`);
