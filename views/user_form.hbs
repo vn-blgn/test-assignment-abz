@@ -32,7 +32,7 @@
                 <div class="form-group vertical-space">
                     <label for="position">Position:</label>
                     <select class="form-control" id="position" type="select" placeholder="Select position" name="position" required='true'>
-                        {{#each users}}
+                        {{#each data}}
                                 <option value={{this.positionId}}>{{this.position}}</option>
                         {{/each}}
                     </select><br>

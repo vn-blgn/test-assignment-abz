@@ -12,12 +12,12 @@
 
           <h1>{{title}}</h1>
 
-          <div><img src={{photo}} alt='user'></div><br>
+          <div><img src={{data.photo}} alt='user'></div><br>
           
           <ul class="ln-hght">
-              <li>Position: <a href={{positionUrl}}>{{position}}</a></li>
-              <li>Phone: {{phone}}</li>
-              <li>Email: {{email}}</li>
+              <li>Position: <a href={{positionUrlWithData}}>{{data.position}}</a></li>
+              <li>Phone: {{data.phone}}</li>
+              <li>Email: {{data.email}}</li>
           </ul>
 
         </div>
